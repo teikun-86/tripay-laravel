@@ -1,0 +1,35 @@
+{
+    "name": "teikun-86/tripay-laravel",
+    "description": "Tripay API for Laravel",
+    "type": "library",
+    "require": {
+        "php": "^8.1",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^10.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Teikun86\\Tripay\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Aziz Febriyanto",
+            "email": "azizfebriyanto12@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Teikun86\\TripayLaravel\\Providers\\TripayServiceProvider"
+            ]
+        }
+    }
+}
