@@ -3,7 +3,7 @@
 <h6 align="center"> Unofficial TriPay Payment Gateway & PPOB integration for Laravel.</h6>
 
 <p align="center">
-    <img src="https://img.shields.io/github/v/release/teikun-86/tripay-laravel?include_prereleases" alt="release"/>
+    <img src="https://img.shields.io/github/v/release/teikun-86/tripay-laravel?include_prereleases=" alt="release"/>
     <img src="https://img.shields.io/github/languages/top/teikun-86/tripay-laravel" alt="languages"/>
     <img alt="Packagist Downloads" src="https://img.shields.io/packagist/dt/teikun-86/tripay-laravel">
     <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/teikun-86/tripay-laravel">
