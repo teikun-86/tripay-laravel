@@ -2,6 +2,8 @@
 
 ###### Unofficial TriPay Payment Gateway & PPOB integration for Laravel. <br> Inspired from [zerosdev/tripay-sdk-php](https://github.com/zerosdev/tripay-sdk-php)
 
+<p align="center">~Under Development 😉~</p>
+
 ## Requirements
 - PHP v8.1+
 - PHP JSON Extension
