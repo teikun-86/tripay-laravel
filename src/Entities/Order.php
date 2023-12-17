@@ -37,19 +37,19 @@ class Order extends Entity
         return $this;
     }
 
-    public function customerName(float $customer_name = 0): Order
+    public function customerName(string $customer_name): Order
     {
         $this->customer_name = $customer_name;
         return $this;
     }
 
-    public function customerPhone(float $customer_phone = 0): Order
+    public function customerPhone(string $customer_phone): Order
     {
         $this->customer_phone = $customer_phone;
         return $this;
     }
 
-    public function customerEmail(float $customer_email = 0): Order
+    public function customerEmail(string $customer_email): Order
     {
         $this->customer_email = $customer_email;
         return $this;

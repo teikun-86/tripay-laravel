@@ -40,13 +40,13 @@ class OrderItem extends Entity
         return $this;
     }
 
-    public function price(?string $price): OrderItem
+    public function price(float $price): OrderItem
     {
         $this->price = $price;
         return $this;
     }
 
-    public function quantity(?string $quantity): OrderItem
+    public function quantity(int $quantity = 1): OrderItem
     {
         $this->quantity = $quantity;
         return $this;
