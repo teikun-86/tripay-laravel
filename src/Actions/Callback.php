@@ -35,7 +35,7 @@ class Callback
         return request()->header('HTTP_X_CALLBACK_SIGNATURE', '');
     }
 
-    public function getPayloads(): CallbackPayload
+    public function payloads(): CallbackPayload
     {
         return $this->payloads;
     }
