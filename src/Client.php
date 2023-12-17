@@ -122,25 +122,11 @@ class Client
         if (!$response->ok()) {
             throw new \Exception("Failed to get balance. Error code {$response->status()} {$response->reason()}");
         }
-        $amount = $response->json('data');
-        return $amount !== null ? $amount : $this->parseBalanceFromMessage($response->json('message'));
+        return $response->json('data');
     }
 
     public function getDebug(): array
     {
         return $this->debugs;
-    }
-
-    private function parseBalanceFromMessage(string $message): int|float
-    {
-        preg_match('/(\d+)/', $message, $matches);
-
-        if (!isset($matches[1])) {
-            throw new \Exception("No numerical value found on the given message.");
-        }
-
-        dd($matches);
-
-        return $matches[1];
     }
 }
