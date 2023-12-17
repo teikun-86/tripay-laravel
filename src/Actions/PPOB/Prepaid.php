@@ -57,6 +57,10 @@ class Prepaid
 
         $data = $response->json('data');
 
+        if ($operator_id !== null && !empty($data)) {
+            return new Operator($data[0]);
+        }
+
         return collect($data)->map(fn ($item) => new Operator($item));
     }
 
