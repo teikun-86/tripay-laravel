@@ -49,22 +49,16 @@ class Transaction
             'page', 'per_page', 'sort', 'reference', 'merchant_ref', 'method', 'status'
         ];
         $options = collect($options)->only($availableOptions);
-        $response = $this->client->paymentRequest()->send("GET", "merchant/transactions?".http_build_query($options->toArray()));
+        $response = $this->client->paymentRequest()->send("GET", "merchant/transactions?" . http_build_query($options->toArray()));
         if (!$response->ok()) {
             throw new TransactionException("Failed to get the transactions. Error code {$response->status()} {$response->reason()}");
         }
 
         $pagination = $response->json('pagination');
-        $results = collect($response->json('data'))->map(function($item) {
-            $oItems = [];
-            foreach($item['order_items'] as $oItem) {
-                $oItem[] = (new OrderItem())->fill($oItem);
-            }
-            $order = new Order();
-            $order->fill($item);
-            $order->order_items = $oItems;
-            return $order;
-        });
+        $results = collect($response->json('data'))
+            ->map(function ($item) {
+                return $this->transformResponseToOrder($item);
+            });
         return [
             'data' => $results,
             'pagination' => $pagination
@@ -80,16 +74,10 @@ class Transaction
         }
 
         $order = $response->json('data');
-        $oItems = [];
-        foreach($order['order_items'] as $item) {
-            $oItems[] = (new OrderItem())->fill($item);
-        }
-        $order['order_items'] = $oItems;
-        
-        return (new Order())->fill($order);
+        return $this->transformResponseToOrder($order);
     }
 
-    public function send(): Response
+    public function send(): Order
     {
         if (!$this->order) {
             throw new TransactionException("Can't make a transaction without Order. Create an order by calling `addOrder()`.");
@@ -106,6 +94,15 @@ class Transaction
             throw new TransactionException("Transaction creation failed with code: {$response->status()}. Reason: {$response->reason()}.");
         }
 
-        return $response->json();
+        return $this->transformResponseToOrder($response->json('data'));
+    }
+
+    public function transformResponseToOrder(array $response): Order
+    {
+        $order = new Order($response);
+
+        $order->order_items = array_map(fn ($item) => new OrderItem($item), $order->order_items);
+
+        return $order;
     }
 }
