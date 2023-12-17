@@ -5,6 +5,7 @@ namespace Teikun86\Tripay;
 use Illuminate\Http\Client\PendingRequest as HttpClient;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
+use Teikun86\Tripay\Actions\OpenPayment;
 use Teikun86\Tripay\Actions\Payment;
 use Teikun86\Tripay\Actions\PPOB;
 use Teikun86\Tripay\Actions\Transaction;
@@ -83,6 +84,11 @@ class Client
     public function createPayment(): Payment
     {
         return new Payment($this);
+    }
+
+    public function createOpenPayment(): OpenPayment
+    {
+        return new OpenPayment($this);
     }
 
     public function createTransaction(): Transaction
