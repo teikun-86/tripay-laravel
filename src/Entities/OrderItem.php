@@ -63,9 +63,4 @@ class OrderItem extends Entity
         $this->image_url = $image_url;
         return $this;
     }
-
-    public function toArray(): array
-    {
-        return (array) $this;
-    }
 }
