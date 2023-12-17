@@ -22,7 +22,7 @@ class Payment
 
     public function instruction(
         string $code,
-        string $payment_code,
+        string $payment_code = null,
         float|int|null $amount = null,
         bool $allowHtml = false
     ): Collection {
