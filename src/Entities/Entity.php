@@ -34,8 +34,7 @@ abstract class Entity implements Arrayable
                 $subArray = [];
                 foreach ($value as $subKey => $subValue) {
                     if ($subValue instanceof Entity) {
-                        $subArray[$subKey] = $subValue->getAttributes();
-                        // $subArray[$subKey] = $subValue->toArray();
+                        $subArray[$subKey] = $subValue->toArray();
                     } else {
                         $subArray[$subKey] = $subValue;
                     }
