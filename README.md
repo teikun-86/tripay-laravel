@@ -11,8 +11,6 @@
     <img alt="PR Welcome" src="https://img.shields.io/badge/PRs-Welcome-blue">
 </p>
 
-<p align="center">~Under Development. More Docs soon~</p>
-
 ## Requirements
 
 -   PHP v8.1+
