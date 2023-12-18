@@ -75,7 +75,7 @@ class Order extends Entity
 
     public function expiresAt(\Illuminate\Support\Carbon $expiresAt): Order
     {
-        $this->merchant_ref = $expiresAt->getTimestamp();
+        $this->expired_time = $expiresAt->getTimestamp();
         return $this;
     }
 
