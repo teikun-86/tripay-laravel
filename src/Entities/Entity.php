@@ -5,7 +5,7 @@ namespace Teikun86\Tripay\Entities;
 use Illuminate\Contracts\Support\Arrayable;
 
 abstract class Entity implements Arrayable
-{    
+{
     protected $attributes = [];
 
     public function __construct(array $attributes = [])
@@ -51,6 +51,11 @@ abstract class Entity implements Arrayable
     public function getAttributes(): array
     {
         return $this->attributes;
+    }
+
+    public function only(array $keys): array
+    {
+        return collect($this->toArray())->only($keys)->toArray();
     }
 
     public function fill(array $attributes): self
