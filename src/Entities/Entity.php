@@ -58,6 +58,11 @@ abstract class Entity implements Arrayable
         return collect($this->toArray())->only($keys)->toArray();
     }
 
+    public function except(array $keys): array
+    {
+        return collect($this->toArray())->except($keys)->toArray();
+    }
+
     public function fill(array $attributes): self
     {
         $this->attributes = array_merge($this->attributes, $attributes);
