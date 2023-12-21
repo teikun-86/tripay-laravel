@@ -9,6 +9,7 @@
     <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/teikun-86/tripay-laravel">
     <img alt="GitHub License" src="https://img.shields.io/github/license/teikun-86/tripay-laravel">
     <img alt="PR Welcome" src="https://img.shields.io/badge/PRs-Welcome-blue">
+    <a href="https://www.codefactor.io/repository/github/teikun-86/tripay-laravel"><img src="https://www.codefactor.io/repository/github/teikun-86/tripay-laravel/badge" alt="CodeFactor" /></a>
 </p>
 
 ## Requirements
