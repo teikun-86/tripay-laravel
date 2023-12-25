@@ -2,9 +2,10 @@
 
 namespace Teikun86\Tripay\Entities;
 
+use ArrayAccess;
 use Illuminate\Contracts\Support\Arrayable;
 
-abstract class Entity implements Arrayable
+abstract class Entity implements Arrayable, ArrayAccess
 {
     protected $attributes = [];
 
@@ -22,7 +23,6 @@ abstract class Entity implements Arrayable
     {
         return $this->attributes[$key];
     }
-
     public function toArray(): array
     {
         $result = [];
@@ -73,4 +73,49 @@ abstract class Entity implements Arrayable
     {
         return empty($this->getAttributes());
     }
+
+    public function offsetExists($key): bool
+    {
+        return isset($this->attributes[$key]);
+    }
+
+    public function offsetGet($key): mixed
+    {
+        return $this->attributes[$key];
+    }
+
+    public function offsetSet($key, $value): void
+    {
+        if (is_null($key)) {
+            $this->attributes[] = $value;
+        } else {
+            $this->attributes[$key] = $value;
+        }
+    }
+
+    public function offsetUnset($key): void
+    {
+        unset($this->attributes[$key]);
+    }
+
+    public function __unset(string $key): void
+    {
+        $this->remove($key);
+    }
+
+    public function __isset(string $key): bool
+    {
+        return $this->has($key);
+    }
+
+    public function has(string $key): bool
+    {
+        return isset($this->attributes[$key]);
+    }
+
+    public function remove(string $key): void
+    {
+        unset($this->attributes[$key]);
+    }
+
 }
