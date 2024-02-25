@@ -28,7 +28,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Teikun86\\TripayLaravel\\Providers\\TripayServiceProvider"
+                "Teikun86\\Tripay\\Providers\\TripayServiceProvider"
             ]
         }
     }
