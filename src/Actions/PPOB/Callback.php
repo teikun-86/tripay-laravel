@@ -16,15 +16,17 @@ class Callback
 
     protected CallbackPayload $payload;
 
-    public function __construct(PPOB $ppob, string $callbackSecret)
+    public function __construct(PPOB $ppob, string $callbackSecret, bool $validateImmediately = true)
     {
         $this->ppob = $ppob;
         $this->callbackSecret = $callbackSecret;
         $this->payload = new CallbackPayload(request()->all());
         $this->incomingSecret = request()->header('X_CALLBACK_SECRET');
-        $valid = $this->validateSecret();
-        if (!$valid) {
-            throw new InvalidCallbackSecretException("The given callback secret is invalid.");
+        if ($validateImmediately) {
+            $valid = $this->validateSecret();
+            if (!$valid) {
+                throw new InvalidCallbackSecretException("The given callback secret is invalid.");
+            }
         }
     }
 

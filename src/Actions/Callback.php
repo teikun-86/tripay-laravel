@@ -16,13 +16,15 @@ class Callback
 
     protected CallbackPayload $payloads;
 
-    public function __construct(Client $client)
+    public function __construct(Client $client, bool $validateImmediately = true)
     {
         $this->client = $client;
         $input = request()->input();
         $this->json = json_encode($input);
         $this->payloads = new CallbackPayload($input);
-        $this->validate();
+        if ($validateImmediately) {
+            $this->validate();
+        }
     }
 
     public function localSignature(): string

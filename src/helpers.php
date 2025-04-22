@@ -18,10 +18,10 @@ if (!function_exists('tripayCallback')) {
     /**
      * Get the callback instance.
      */
-    function tripayCallback(): Callback|PPOBCallback
+    function tripayCallback(bool $validateImmediately = true): Callback|PPOBCallback
     {
         return request()->header('X_CALLBACK_SECRET')
-            ? new PPOBCallback(tripayClient()->ppob(), config('tripay.ppob_callback_secret'))
-            : new Callback(tripayClient());
+            ? new PPOBCallback(tripayClient()->ppob(), config('tripay.ppob_callback_secret'), $validateImmediately)
+            : new Callback(tripayClient(), $validateImmediately);
     }
 }
