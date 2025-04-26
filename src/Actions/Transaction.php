@@ -46,7 +46,13 @@ class Transaction
     ]): array
     {
         $availableOptions = [
-            'page', 'per_page', 'sort', 'reference', 'merchant_ref', 'method', 'status'
+            'page',
+            'per_page',
+            'sort',
+            'reference',
+            'merchant_ref',
+            'method',
+            'status'
         ];
         $options = collect($options)->only($availableOptions);
         $response = $this->client->paymentRequest()->send("GET", "merchant/transactions?" . http_build_query($options->toArray()));
@@ -99,9 +105,9 @@ class Transaction
 
     public function transformResponseToOrder(array $response): Order
     {
-        $order = new Order($response);
+        $order = (new Order())->fill($response);
 
-        $order->order_items = array_map(fn ($item) => new OrderItem($item), $order->order_items);
+        $order->order_items = array_map(fn($item) => (new OrderItem())->fill($item), $order->order_items);
 
         return $order;
     }
