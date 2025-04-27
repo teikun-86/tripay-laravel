@@ -34,7 +34,7 @@ class Callback
 
     public function incomingSignature(): string
     {
-        return request()->header('HTTP_X_CALLBACK_SIGNATURE', '');
+        return request()->header('X-Callback-Signature', '');
     }
 
     public function payloads(): CallbackPayload
